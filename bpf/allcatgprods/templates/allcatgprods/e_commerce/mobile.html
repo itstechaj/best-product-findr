@@ -1,0 +1,528 @@
+{% extends 'allcatgprods_basic.html' %}
+<!--Max price i sa custom build fiter which gives us the max price product (minp pe filter lgega) present in the filtered set-->
+{% load customfilters %}
+{% block pagetitle %}
+{% comment %} here the checkcatg will chaeck the special category value if it is general the it return " "(one space) otherwise it returns that special category name (with first letter capital) {% endcomment %}
+Best {{spclcatg|checkspclcatg}} Mobiles Under Rs. {{maximumprice}} in India [2022]
+{% endblock pagetitle %}
+
+{% block pagedescription %}
+List of Best {{spclcatg|checkspclcatg}} Mobiles In Range Rs. {{minimumprice}} - Rs. {{maximumprice}}  In India [2022]:-
+{% for prod in filterset %}
+{{forloop.counter}}) {{prod.name}}.
+{% endfor %}
+*Click to Know the Pro and Cons, Detailed Reveiw by Users ,Detailed Specifications,Youtube Unboxing and Review Video Links and
+more...
+{% endblock pagedescription %}
+
+{% block pagestyle %}
+<!--Extra style for Price details Box In which prices at diffrent stores are shown-->
+.buy_price_box{
+  padding: 0px 0px;
+}
+.buy_price_box>div{
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.buy_price_box>p{
+  box-shadow: 0px 1px 5px 3px darkgrey;
+  padding: 5px 0px;
+  margin:0px 0px;
+  margin-bottom:15px;
+  color: #3f8d91;
+}
+.sell_logo{
+  min-width: 130px;
+}
+.buy_logo_col{
+  box-shadow: 0 0px 5px yellow;
+}
+.buy_logo_col>a{
+  text-decoration: none;
+}
+.buy_logo_col>a>span{
+  margin-bottom: 8px;
+  font-size: 22px;
+  color: tomato;
+  font-weight: 700;
+}
+{% endblock pagestyle %}
+{% comment %} We have leaved Page style block empty here {% endcomment %}
+
+<!-- Here we are going to include the Headlink slider (this is included in all pages) -->
+<!--Import proablem -->
+<!--While i am trying to include the basic folder the include does not work and also it does not giving an error -->
+<!--Solution-->
+<!--Another situation where an include statement will fail without raising an error is if you are working in a template which extends another, and your include is outside of a named block:
+In this case file2.html will not be included because it is not in a block, and you will get no warning messages, and will try all sorts of things before you realise what you've done :-)-->
+<!--That means if your current template is have extend tag then you must use include inside q block of extended tag -->
+{% block headerlinks %}
+{% include "headerlinkslider_basic.html" with prodcatglist_allobjects=prodcatglist_allobjects %}
+{% endblock headerlinks %}
+<!-- head link slider end here -->
+
+<!-- Price range selector starts here -->
+{% block pricerangeselector %}
+<div class="container-fluid text-center">
+  <form action="" method="get">
+  <label for="pricerange" class="fs-5 fw-bold mt-3">Select Your Price Range</label>
+  <select name="options" id="pricerange" class="fs-6 ms-4">
+    <option value="0">&#8377; 7999 and Below</option>
+    <option value="1">&#8377; 8000 - &#8377; 10999</option>
+    <option value="2" selected>&#8377; 11000 - &#8377; 14999</option>
+    <option value="3">&#8377; 15000 - &#8377; 19999</option>
+    <option value="4">&#8377; 20000 - &#8377; 24999</option>
+    <option value="5">&#8377; 25000 and Above</option>
+    <option value="6">Best Camera Phones</option>
+    <option value="7">Best Phones for Gaming</option>
+    <option value="8">Best Keypad Phones</option>
+  </select>
+  <!-- onclick="redirectToURL() -->
+  <button type="submit" class="btn btn-primary btn-sm mb-2 ms-lg-5 ms-md-3 ms-sm-3">Apply</button>
+  </form>
+</div>
+{% endblock pricerangeselector %}
+<!-- Price range selector Ends here  -->
+
+{% block blogheading %}
+Best {{spclcatg|checkspclcatg}} Mobiles under &#8377; {{maximumprice}} in India [2022].
+{% endblock blogheading %}
+
+{% block readingtime %}
+50 seconds
+{% endblock readingtime %}
+
+{% block summarytable %}
+<p class="fw-bold text-primary fs-4 text-center">Products List Summary</p>
+<thead>
+    <tr class="text-secondary">
+        <th>#</th>
+        <th>Name</th>
+        <th>RAM</th>
+        <th>Memory</th>
+        <th>Camera</th>
+        <th>Lowest Price</th>
+    </tr>
+</thead>
+<tbody>
+    {% for prod in filterset %}
+    <tr>
+        <th>{{forloop.counter}}</th>
+        <td>{{prod.name}}</td>
+        <td>
+            {{prod.ram}}
+        </td>
+        <td>
+            {{prod.memory}}
+        </td>
+        <td>
+          {{prod.camera}}
+        </td>
+        <td>
+            <a href="{{prod.minplink}}"><button type="button" class="btn btn-danger btn-sm fw-bold">&#8377;{{prod.minp}}</button></a>
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>
+{% endblock summarytable %}
+
+{% block sourceofinformation %}
+*Source of Information :- Ecommerce websites,Official Websites,Other Blogs.
+{% endblock sourceofinformation %}
+
+
+{% block pagebody %}
+
+<!--  table of contents starts here -->
+{% include 'tableofcontents_basic.html' with prodset=filterset %}
+<!-- table of contents Ends here -->
+
+{% for prod in filterset %}
+    <!-- //First Product starts Here -->
+
+  <!-- First product heading starts here  -->
+    {% comment %} here you are given a variabe prod which contains all information for one product  {% endcomment %}
+
+  <div class="container-sm container" id="prod{{forloop.counter}}">
+    <div class="row">
+      <div class="col-2 col-md-1 col-lg-1 text-center fs-4 bg-danger fw-bold text-white">
+        {{forloop.counter}}
+      </div>
+      <div class="col-10 col-md-11 col-lg-11 fs-4 fw-bold bg-secondary bg-opacity-10 lh-sm">
+        {{prod.name}}
+      </div>
+    </div>
+  </div>
+  <!-- First product heading Ends here  -->
+
+  <!-- First Product image starts here  -->
+  <div class="container mt-2">
+    <img src="/media/{{prod.prodimg}}" alt="{{prod.name}} image" class="img-fluid d-block mx-auto">
+  </div>
+  <!-- First Product image Ends here  -->
+
+  <!-- Product score (for 1st product) starts here  -->
+  <p class="fs-4 text-danger text-center mt-2 mb-3">Product rating : {{prod.rating}}/5</p>
+  <!-- Product score (for 1st product) Ends here  -->
+
+  <!-- Basic product Details with icons(for 1st product) starts here -->
+  <div class="container">
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-3">
+      <div class="col mb-3 ">
+        <div class="row">
+          <div class="col-4">
+            <img src="https://img.icons8.com/external-prettycons-flat-prettycons/40/000000/external-ram-technology-prettycons-flat-prettycons.png" alt="Ram"/>
+          </div>
+          <div class="col-8">
+            <div class="row">
+              <div class="row fw-bold">RAM</div>
+              <div class="row">{{prod.ram}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col mb-3">
+        <div class="row">
+          <div class="col-4">
+            <img src="https://img.icons8.com/nolan/45/processor.png" alt="Processor"/>
+          </div>
+          <div class="col-8">
+            <div class="row">
+              <div class="row fw-bold">PROCESSOR</div>
+              <div class="row">{{prod.proc}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col mb-3">
+        <div class="row">
+          <div class="col-4">
+            <img src="https://img.icons8.com/fluency/45/000000/micro-sd.png" alt="Memory"/>
+          </div>
+          <div class="col-8">
+            <div class="row">
+              <div class="row fw-bold">Internal Storage</div> <!--agar SSD hoga to SSD 256GB aise likhna and HDD hoga to HDD 500 GB aise likhna-->
+              <!--<div class="row">256 GB SSD/8 GBGB DDR4</div>-->
+              <div class="row">{{prod.memory}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col mb-3">
+        <div class="row">
+          <div class="col-4">
+            <img src="https://img.icons8.com/nolan/45/iphone-x.png" alt="Display">
+          </div>
+          <div class="col-8">
+            <div class="row">
+              <div class="row fw-bold">DISPLAY</div>
+              <div class="row">{{prod.dispsize}}({{prod.dispres}})</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col mb-3">
+        <div class="row">
+          <div class="col-4">
+            <img src="https://img.icons8.com/nolan/45/google-images.png" alt="Camera" />
+          </div>
+          <div class="col-8">
+            <div class="row">
+              <div class="row fw-bold">Camera</div>
+              <div class="row">{{prod.camera}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col mb-3">
+        <div class="row">
+          <div class="col-4">
+            <img src="https://img.icons8.com/nolan/45/full-battery.png" alt="Battery"/>
+          </div>
+          <div class="col-8">
+            <div class="row">
+              <div class="row fw-bold">BATTERY</div>
+              <div class="row">{{prod.battery}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Basic product Details with icons(for 1st product) Ends here -->
+  <hr>
+  
+  {% comment %} Here include the procons_and_userreveiws.html with prod as a varible given to that  {% endcomment %}
+  {% include 'procons_and_userreveiws_basic.html' with prod=prod%}
+
+  <!-- Buy link (for 1st product) starts here  -->
+  <div class="container p-0 fs-4 lh-1 mt-3 mb-3">
+    <!--if any Link is Not avialable then fill # in place of that and if any price is not available then fill N.A in place of that -->
+    <!--Price range at diffrent stores starts here  -->
+    <div class="container container-sm p-0 mb-3 buy_price_box">
+      <p class="text-center fw-bold fs-3">Price Comparison</p>
+      <div class="row row-cols-lg-4 row-cols-2 text-center">
+        <div class="col buy_logo_col">
+          <a href="{{prod.amazonlink}}" class="d-flex flex-column" target="_blank">
+            <img src="/media/common/e_commerce/img/amazon.jpg" alt="Amazon Logo" class="img-fluid sell_logo">
+            <span>{{prod.amazonp}}</span>
+          </a>
+        </div>
+        <div class="col buy_logo_col">
+          <a href="{{prod.flipkartlink}}" class="d-flex flex-column" target="_blank">
+            <img src="/media/common/e_commerce/img/flipkart.png" alt="Flipkart Logo" class="img-fluid sell_logo">
+            <span>{{prod.flipkartp}}</span>
+          </a>
+        </div>
+        <div class="col buy_logo_col">
+          <a href="{{prod.reliancelink}}" class="d-flex flex-column" target="_blank">
+            <img src="/media/common/e_commerce/img/reliance_digital.png" alt="Reliance Digital logo" class="img-fluid sell_logo">
+            <span >{{prod.reliancep}}</span>
+          </a>
+        </div>
+        <div class="col buy_logo_col">
+          <a href="{{prod.officiallink}}" class="d-flex flex-column" target="_blank">
+            <img src="/media/common/e_commerce/img/officialwebsite.png" alt="Product Official Website" class="img-fluid sell_logo">
+            <span>{{prod.officialp}}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!--Price range at diffrent stores ends here  -->
+    <a href="{{prod.minplink}}" class="text-decoration-none" target="_blank">
+    <p class="text-center bg-danger text-light p-2">Lowest price Seller : {{prod.minpseller}}</p>
+    </a>
+
+    <a href="{{prod.minplink}}" target="_blank">
+      <button type="button" class="btn btn-primary w-100 fs-4 p-2">Buy @&#8377;{{prod.minp}} (Lowest)</button>
+    </a>
+    <!-- first product youtube review / Unboxing video link starts here  -->
+    <p class="text-lg-center text-md-center text-sm-start mt-2"><a href="{{prod.youtubelink}}"
+        class="fs-5 text-secondary" target="_blank"><img
+          src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="Youtube logo" />Click to Watch Best Unboxing / Review Of this Product
+        on Youtube</a></p>
+    <!-- First product youtube Reveiw / unboxing Link Ends here  -->
+  </div>
+  <!-- Buy link (for 1st product) Ends here  -->
+
+  <!-- Full specification button (For 1st Product) starts here  -->
+  <div class="container">
+    <p class="text-end">
+      <button class="btn btn-outline-danger" type="button" data-bs-toggle="collapse"
+        data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        See Full Specifications..
+      </button>
+    </p>
+    <div class="collapse container container-sm" id="collapseExample">
+      <div class="card card-body">
+        <!-- Full specification Starts here -->
+        <!-- First Row of Specification Stars Here  -->
+        <div class="row ">
+          <div class="col-3">
+            General information
+          </div>
+          <div class="col-9">
+            <table class="table table-striped table-sm">
+              <tr>
+                <th>Model</th>
+                <td>{{prod.model}}</td>
+              </tr>
+              <tr>
+                <th>Weight</th>
+                <td>{{prod.weight}}</td>
+              </tr>
+              <tr>
+                <th>Colors</th>
+                <td>{{prod.color}}</td>
+              </tr>
+              <tr>
+                <th>Operating System</th>
+                <td>{{prod.os}}</td>
+              </tr>
+              <tr>
+                <th>Battery Capacity</th>
+                <td>{{prod.battery}}</td>
+              </tr>
+              <tr>
+                <th>Body</th>
+                <td>{{prod.metallicbody}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <!-- First Row of Specification Ends Here  -->
+        <hr>
+        <!-- Second Row of specification starts here  -->
+        <div class="row ">
+          <div class="col-3">
+            Performance
+          </div>
+          <div class="col-9">
+            <table class="table table-striped table-sm">
+              <tr>
+                <th>Processor</th>
+                <td>{{prod.proc}}</td>
+              </tr>
+              <tr>
+                <th>Processor clock speed</th>
+                <td>{{prod.clockspeed}}</td>
+              </tr>
+              <tr>
+                <th>Graphic Processor</th>
+                <td>{{prod.gproc}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <!-- Second Row of specification Ends here  -->
+        <hr>
+        <!-- Third Row of specification starts here  -->
+        <div class="row ">
+          <div class="col-3">
+            Memory
+          </div>
+          <div class="col-9">
+            <table class="table table-striped table-sm">
+              <tr>
+                <th>RAM Capacity</th>
+                <td>{{prod.ram}}</td>
+              </tr>
+              <tr>
+                <th>Memory</th>
+                <td>{{prod.ssd}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <!-- Third Row of specification Ends here  -->
+        <hr>
+        <!-- Fourth Row of specification starts here  -->
+        <div class="row ">
+          <div class="col-3">
+            Display Details
+          </div>
+          <div class="col-9">
+            <table class="table table-striped table-sm">
+              <tr>
+                <th>Display Size</th>
+                <td>{{prod.dispsize}}</td>
+              </tr>
+              <tr>
+                <th>Display Resolution</th>
+                <td>{{prod.dispres}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <!-- Fourth Row of specification Ends here  -->
+        <hr>
+        <!-- Fifth Row of specification starts here  -->
+        <div class="row ">
+          <div class="col-3">
+            Multimedia
+          </div>
+          <div class="col-9">
+            <table class="table table-striped table-sm">
+              <tr>
+                <th>Camera</th>
+                <td>{{prod.camera}}</td>
+              </tr>
+              <tr>
+                <th>Video Recording</th>
+                <td>{{prod.videorec}}</td>
+              </tr>
+              <tr>
+                <th>Speakers</th>
+                <td>{{prod.speakers}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <!-- Fifth Row of specification Ends here  -->
+        <hr>
+        <!-- Sixth Row of specification starts here  -->
+        <div class="row ">
+          <div class="col-3">
+            Ports
+          </div>
+          <div class="col-9">
+            <table class="table table-striped table-sm">
+              <tr>
+                <th>USB port</th>
+                <td>{{prod.usbport}}</td>
+              </tr>
+              <tr>
+                <th>Sim Slots</th>
+                <td>{{prod.simslot}}</td>
+              </tr>
+              <tr>
+                <th>Ex Memory Slots</th>
+                <td>{{prod.memoryslot}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <!-- Sixth Row of specification Ends here  -->
+        <hr>
+        <!-- Seventh Row of specification starts here  -->
+        <div class="row ">
+          <div class="col-3">
+            Others
+          </div>
+          <div class="col-9">
+            <table class="table table-striped table-sm">
+              <tr>
+                <th>Fingerprint scan</th>
+                <td>{{prod.fingerscan}}</td>
+              </tr>
+              <tr>
+                <th>Face scan</th>
+                <td>{{prod.facescan}}</td>
+              </tr>
+              <tr>
+                <th>Warrenty</th>
+                <td>{{prod.warrenty}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <!-- Seventh Row of specification Ends here  -->
+        <hr>
+        <!-- Full specification Ends Here  -->
+      </div>
+    </div>
+  </div>
+  <!-- Full Specification button (For 1st product) Ends here  -->
+
+  <!-- First product ends here  -->
+  {% empty %}
+  <h2 class="text-center">Sorry no product found</h2>
+  <div class="container container-sm text-center">
+    <img src="/media/common/img/product_not_found.png" alt="Products Not Found" class="img-fluid">
+  </div>
+{% endfor %}
+
+<!--We have added a script below to change the price range select selected value (actually when apply apply  -->
+<!--button is pressed then the page get refreshed and the initially selected value is shown allways to i have -->
+<!--added a javascript code to change the selected option also when the apply button get clicked)-->
+<script>
+  function myfunc() {
+      //here i am storing the current path (or url i am at)
+      let currpath = window.location.href;
+      let sel=document.getElementById("pricerange");
+      //i have initiated the selectedoption with the option in which i put thw selected tag 
+      let selectedoption=sel.selectedIndex;
+      //now if apply button is pressed then in the url options=some_int appended so that i am checking 
+      //and if my current url contains the options=some_int then i store the int as my selected option index
+      if(currpath.includes("options=")){
+        selectedoption=parseInt(currpath.charAt(currpath.indexOf("options=")+8));
+      }
+      console.log(selectedoption);
+      //now i get that option using selectedoption(as selectedoption is the index of option selected)
+      let opt=sel.options[selectedoption];
+      //Now i chage the selected attribute of current selected option to true so that it is shown selected
+      opt.selected=true;
+    }
+    myfunc()
+</script>
+{% endblock pagebody %}

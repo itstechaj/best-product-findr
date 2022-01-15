@@ -1,0 +1,140 @@
+{% extends 'basic.html' %}
+
+{% block pagetitle %}Best Product Finder{% endblock pagetitle %}
+
+{% block pagestyle %}
+{% comment %} Enter your extra style (ig - reveiw form style) here {% endcomment %}
+<!-- Css written by me... -->
+.categorytitle {
+margin-top: 0.5rem;
+/* margin-bottom: 0.5rem; */
+padding: 5px 15px;
+}
+
+.catname {
+font-size: 1.5rem;
+font-weight: bold;
+color: black;
+}
+.divider{
+height: 1.5rem;
+background-color: rgba(0, 0, 0, .1);
+border: solid rgba(0, 0, 0, .15);
+border-width: 1px 0;
+box-shadow: inset 0 0.5em 1.5em rgb(0 0 0 / 10%), inset 0 0.125em 0.5em rgb(0 0 0 / 15%);
+}
+{% endblock pagestyle %}
+
+{% block pagebody %}
+<!-- Front page image and autotyping code starts here  -->
+<div class="container-fluid pt-3" style="background-color: #ebdaca;">
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-12 p-0"><img src="/media/homepage/img/magnifyingimage.png"
+                alt="Best Product Finder" class="img-fluid"></div>
+        <div class="col-lg-4 col-md-4 col-sm-12 p-0 my-lg-auto"><span class="fs-1 fw-bold text-primary">Best </span>
+            <span class="fs-1 fw-bold lh-1 text-secondary" id="autotyping"></span>
+            <span class="fs-1 lh-1 text-secondary" id="falling"><img
+                    src="https://img.icons8.com/ios/50/000000/car-accident.png" /></span>
+            <span class="fs-1 lh-1 text-secondary" id="pushing"><img
+                    src="https://img.icons8.com/ios/50/000000/car-theft.png" /></span>
+        </div>
+    </div>
+</div>
+<!-- Front page image and autotyping code Ends here  -->
+
+{% comment %} All category starts here  {% endcomment %}
+{% comment %} here dictionaryname.items splits it into (key,value) pairs {% endcomment %}
+{% load customfilters %}
+{% comment %} Allways use replacewithdash filter in links containing spaces  {% endcomment %}
+{% for key,value in homepagedict.items %}
+<div class="divider" id="{{key|replacewithdash}}"></div>
+<div class="container-fluid mt-1 p-0">
+    <div class="categorytitle p-0 ps-lg-4 ps-sm-0 ps-md-2">
+        <h2>Best {{key}} List :-</h2>
+        <hr>
+    </div>
+    <div class="container-fluid ">
+        <div class="row">
+            {% for prod in value %}
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-3 my-3">
+                <a href="{{prod.catg|replacewithdash}}/{{prod.subcatg|replacewithdash}}/" class="d-flex flex-column text-center align-items-center text-decoration-none"
+                    target=_blank>
+                    <img src="/media/{{prod.subcatgimg}}" alt="{{prod.subcatg}}" class="img-fluid">
+                    <span class="catname">{{prod.subcatg}}</span>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% comment %} //All category Ends here {% endcomment %}
+
+
+<!-- //Auto typing text java script starts here  -->
+<script>
+    const words = ["Handpicked Products for you.", "Laptops.", "Mobiles.", "T.V ,Fridges ,A.c and much more...", "Stock & Crypto trading Apps.", "Coupons & Deals.", "Products List."];
+    let i = 0;
+    let counter;
+    function typeNow() {
+        let fall = document.getElementById("falling")
+        if (fall.style.display == "none") {
+            fall.style.display = "inline"
+        }
+        let push = document.getElementById("pushing")
+        if (push.style.display != "none") {
+            push.style.display = "none"
+        }
+        let word = words[i].split("");
+        var loopTyping = function () {
+            if (word.length > 0) {
+                document.getElementById('autotyping').innerHTML += word.shift();
+            } else {
+                if (words.length > (i + 1)) {
+                    deleteNow();
+                    return false;
+                }
+                else {
+                    return;
+                }
+            };
+            if (word.length > 0) {
+                counter = setTimeout(loopTyping, 100);
+            } else {
+                counter = setTimeout(loopTyping, 1500);
+            }
+        };
+        loopTyping();
+    };
+    function deleteNow() {
+        let push = document.getElementById("pushing")
+        if (push.style.display == "none") {
+            push.style.display = "inline"
+        }
+        let fall = document.getElementById("falling")
+        if (fall.style.display != "none") {
+            fall.style.display = "none"
+        }
+        let word = words[i].split("");
+        var loopDeleting = function () {
+            if (word.length > 0) {
+                word.pop();
+                document.getElementById('autotyping').innerHTML = word.join("");
+            } else {
+                if (words.length > (i + 1)) {
+                    i++;
+                }
+                else {
+                    return;
+                };
+                typeNow();
+                return false;
+            };
+            counter = setTimeout(loopDeleting, 50);
+        };
+        loopDeleting();
+    };
+    typeNow();
+</script>
+<!-- //Auto typing text java script Ends here  -->
+{% endblock pagebody %}

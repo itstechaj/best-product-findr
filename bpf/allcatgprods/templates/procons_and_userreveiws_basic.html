@@ -1,0 +1,80 @@
+{% comment %} I include this html file with a object as variable (it containes pro,cons,users positve and negative reveiws) {% endcomment %}
+
+<!-- Pros and Cons Of (first product) starts here  -->
+<div class="container">
+    <div class="row row-cols-lg-2 text-white row-cols-md-2 row-cols-1">
+      <div class="col bg-success border border-white border-5">
+        <!-- Pros..  -->
+        {% load customfilters %}
+        <span>
+          <img src="https://img.icons8.com/emoji/45/ffffff/thumbs-up.png" />
+        </span>
+        <span class="fs-4 fw-bold">Pros</span>
+        <ul class="fs-5 mt-2">
+          {% for pro in prod.pros|spliter %}
+          <li>{{pro}}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="col bg-danger border border-white border-5">
+        <!-- Cons..  -->
+        <span>
+          <img src="https://img.icons8.com/emoji/45/000000/thumbs-down-emoji.png" />
+        </span>
+        <span class="fs-4 fw-bold">Cons</span>
+        <ul class="fs-5 mt-2">
+            {% for con in prod.cons|spliter %}
+            <li>{{con}}</li>
+            {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- Pros and Cons Of (first product) Ends here  -->
+
+  <!-- 3 Buyers Positive/Negative Review starts here -->
+  <div class="container p-0 mt-2">
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingOne">
+          <button class="accordion-button collapsed bg-success bg-opacity-10 fw-bold fs-5" type="button" data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+            3 Users Positive reveiw
+          </button>
+        </h2>
+        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+          data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body container container-sm p-sm-0 border border-2 border-success rounded-3 mt-3">
+            <ul class="fs-5">
+            {% for review in prod.upr|spliter %}
+                <li><strong>User {{forloop.counter}} : </strong>{{review}}</li>
+                {% if forloop.counter < 3 %} <hr>
+                {% endif %}
+            {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingTwo">
+          <button class="accordion-button collapsed bg-danger text-center bg-opacity-10 fw-bold fs-5" type="button" data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+            3 Users Negative review
+          </button>
+        </h2>
+        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
+          data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body container container-sm p-sm-0  border border-2 border-danger rounded-3 mt-3">
+            <ul class="fs-5">
+                {% for review in prod.unr|spliter %}
+                <li><strong>User {{forloop.counter}} : </strong>{{review}}</li>
+                {% if forloop.counter < 3 %} <hr>
+                {% endif %}
+            {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 3 Buyers Positive/Negative Review Ends here -->

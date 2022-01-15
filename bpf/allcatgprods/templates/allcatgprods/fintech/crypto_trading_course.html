@@ -1,0 +1,252 @@
+{% extends 'allcatgprods_basic.html' %}
+<!--Max price i sa custom build fiter which gives us the max price product (minp pe filter lgega) present in the filtered set-->
+{% block pagetitle %}
+{% comment %} here the checkcatg will chaeck the special category value if it is general the it return " "(one space)
+otherwise it returns that special category name (with first letter capital) {% endcomment %}
+Best free Crypto trading &amp; NFT courses for Beginners [2022]
+{% endblock pagetitle %}
+
+{% block pagedescription %}
+List of Best free Crypto trading &amp; NFT courses for Beginners [2022]:-
+{% for prod in filterset %}
+{{forloop.counter}}) {{prod.name}}.
+{% endfor %}
+*Click to Know the Pro and Cons, Detailed Reveiw by students ,More details,Youtube Review of this course and more...
+{% endblock pagedescription %}
+
+{% block pagestyle %}
+<!--Extra style for Price details Box In which prices at diffrent stores are shown-->
+
+{% endblock pagestyle %}
+{% comment %} We have leaved Page style block empty here {% endcomment %}
+
+<!-- Here we are going to include the Headlink slider (this is included in all pages) -->
+<!--Import proablem -->
+<!--While i am trying to include the basic folder the include does not work and also it does not giving an error -->
+<!--Solution-->
+<!--Another situation where an include statement will fail without raising an error is if you are working in a template which extends another, and your include is outside of a named block:
+In this case file2.html will not be included because it is not in a block, and you will get no warning messages, and will try all sorts of things before you realise what you've done :-)-->
+<!--That means if your current template is have extend tag then you must use include inside q block of extended tag -->
+{% block headerlinks %}
+{% include "headerlinkslider_basic.html" with prodcatglist_allobjects=prodcatglist_allobjects %}
+{% endblock headerlinks %}
+<!-- head link slider end here -->
+
+{% block blogheading %}
+Best free Crypto trading &amp; NFT courses for Beginners.[2022] <span class="badge bg-warning p-1 fs-6">New</span>
+{% endblock blogheading %}
+
+{% block readingtime %}
+less than a minute
+{% endblock readingtime %}
+
+{% block summarytable %}
+<p class="fw-bold text-primary fs-4 text-center">Products List Summary</p>
+<thead>
+    <tr class="text-secondary">
+        <th>#</th>
+        <th>Course Name</th>
+        <th>Duration</th>
+        <th>Fees</th>
+        <th>Students Completed</th>
+        <th>Visit course</th>
+    </tr>
+</thead>
+<tbody>
+    {% for prod in filterset %}
+    <tr>
+        <th>{{forloop.counter}}</th>
+        <td>{{prod.name}}</td>
+        <td>
+            {{prod.courselength}}
+        </td>
+        <td>
+            {{prod.coursefees}}
+        </td>
+        <td>
+            {{prod.studentscompleted}}
+        </td>
+        <td>
+            <a href="{{prod.courselink}}"><button type="button"
+                    class="btn btn-success btn-sm fw-bold">&#8377;{{prod.platform}}</button></a>
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>
+{% endblock summarytable %}
+
+{% block sourceofinformation %}
+*Source of Information :- Education Websites,Other Blogs.
+{% endblock sourceofinformation %}
+
+
+{% block pagebody %}
+
+<!--  table of contents starts here -->
+{% include 'tableofcontents_basic.html' with prodset=filterset %}
+<!-- table of contents Ends here -->
+
+{% for prod in filterset %}
+<!-- //First Product starts Here -->
+
+<!-- First product heading starts here  -->
+{% comment %} here you are given a variabe prod which contains all information for one product {% endcomment %}
+
+<div class="container-sm container" id="prod{{forloop.counter}}">
+    <div class="row">
+        <div class="col-2 col-md-1 col-lg-1 text-center fs-4 bg-danger fw-bold text-white">
+            {{forloop.counter}}
+        </div>
+        <div class="col-10 col-md-11 col-lg-11 fs-4 fw-bold bg-secondary bg-opacity-10 lh-sm">
+            {{prod.name}}
+        </div>
+    </div>
+</div>
+<!-- First product heading Ends here  -->
+
+<!-- First Product image starts here  -->
+<div class="container mt-2">
+    <img src="/media/{{prod.prodimg}}" alt="{{prod.name}} image" class="img-fluid d-block mx-auto">
+</div>
+<!-- First Product image Ends here  -->
+
+<!-- Product score (for 1st product) starts here  -->
+<p class="fs-4 text-danger text-center mt-2 mb-3">Product rating : {{prod.rating}}/5</p>
+<!-- Product score (for 1st product) Ends here  -->
+
+<!-- Basic product Details with icons(for 1st product) starts here -->
+<div class="container">
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-3">
+        <div class="col mb-3">
+            <div class="row">
+                <div class="col-4">
+                    <img src="https://img.icons8.com/external-becris-lineal-color-becris/40/000000/external-settings-coding-programming-becris-lineal-color-becris.png" alt="Designed for">
+                </div>
+                <div class="col-8">
+                    <div class="row">
+                        <div class="row fw-bold">Designed for</div>
+                        <div class="row">{{prod.designedfor}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col mb-3">
+            <div class="row">
+                <div class="col-4">
+                    <img src="https://img.icons8.com/office/40/000000/courses.png" alt="Course length"/>
+                </div>
+                <div class="col-8">
+                    <div class="row">
+                        <div class="row fw-bold">Course Length</div>
+                        <div class="row">{{prod.courselength}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col mb-3">
+            <div class="row">
+                <div class="col-4">
+                    <img src="https://img.icons8.com/fluency/40/000000/no-hidden-fee.png" alt="Course Fees"/>
+                </div>
+                <div class="col-8">
+                    <div class="row">
+                        <div class="row fw-bold">Course Fees</div>
+                        <div class="row">{{prod.coursefees}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col mb-3">
+            <div class="row">
+                <div class="col-4">
+                    <img src="https://img.icons8.com/nolan/40/warranty-card.png" alt="Couse certificate"/>
+                </div>
+                <div class="col-8">
+                    <div class="row">
+                        <div class="row fw-bold">Certificate</div>
+                        <div class="row">{{prod.coursecertificate}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col mb-3">
+            <div class="row">
+                <div class="col-4">
+                    <img src="https://img.icons8.com/office/40/000000/crowd.png" alt="Students Completed" />
+                </div>
+                <div class="col-8">
+                    <div class="row">
+                        <div class="row fw-bold">Students Completed</div>
+                        <div class="row">{{prod.studentscompleted}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col mb-3">
+            <div class="row">
+                <div class="col-4">
+                    <img src="https://img.icons8.com/external-prettycons-flat-prettycons/40/000000/external-online-course-education-prettycons-flat-prettycons.png" alt="Course Platform"/>
+                </div>
+                <div class="col-8">
+                    <div class="row">
+                        <div class="row fw-bold">Platform</div>
+                        <div class="row">{{prod.courseplatform}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Basic product Details with icons(for 1st product) Ends here -->
+<hr>
+
+{% comment %} Here include the procons_and_userreveiws.html with prod as a varible given to that {% endcomment %}
+{% include 'procons_and_userreveiws_basic.html' with prod=prod%}
+
+<!-- Buy link (for 1st product) starts here  -->
+<div class="container p-0 fs-4 lh-1 mt-3 mb-3">
+
+    <a href="{{prod.courselink}}" target="_blank">
+        <button type="button" class="btn btn-primary w-100 fs-4 p-2">Visit This Course now on {{prod.courseplatform}}/button>
+    </a>
+    <!-- first product youtube review / Unboxing video link starts here  -->
+    <p class="text-lg-center text-md-center text-sm-start mt-2"><a href="{{prod.youtubelink}}"
+            class="fs-5 text-secondary" target="_blank"><img
+                src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="Youtube logo" />Click to Watch Reiview of this course on Youtube</a></p>
+    <!-- First product youtube Reveiw / unboxing Link Ends here  -->
+</div>
+<!-- Buy link (for 1st product) Ends here  -->
+
+<!-- Full specification button (For 1st Product) starts here  -->
+<div class="container">
+    <p class="text-end">
+        <button class="btn btn-outline-danger" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+            aria-expanded="false" aria-controls="collapseExample">
+            See more details..
+        </button>
+    </p>
+    <div class="collapse container container-sm" id="collapseExample">
+        <div class="card card-body">
+            <!-- Full specification Starts here -->
+           <!--Here no any specification-->
+           <p class="fs-5">Course Pre-requisites : {{prod.prerequisite}} <p>
+           <p class="fs-5">Course tutor : {{prod.courseteacher}} <p>
+           <a href="{{prod.courselink}}" class="text-blue text-decoration-none">&#11088; Click Me for more Specification</a>
+           <div class="text-center container container-sm">
+               <img src="/media/common/img/doge_dog.png" class="img-fluid mx-auto" alt="Doge_happy">
+           </div>
+            <!-- Full specification Ends Here  -->
+        </div>
+    </div>
+</div>
+{% empty %}
+<h2 class="text-center">Sorry no product found</h2>
+<div class="container container-sm text-center">
+    <img src="/media/common/img/product_not_found.png" alt="Products Not Found" class="img-fluid">
+</div>
+{% endfor %}
+
+<!--We have added a script below to change the price range select selected value (actually when apply apply  -->
+<!--button is pressed then the page get refreshed and the initially selected value is shown allways to i have -->
+<!--added a javascript code to change the selected option also when the apply button get clicked)-->
+{% endblock pagebody %}

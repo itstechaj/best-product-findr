@@ -1,0 +1,288 @@
+{% extends 'allcatgprods_basic.html' %}
+{% block pagetitle %}
+Top {{filterset.count}} Best Cryptocurrency &amp; NFT trading Apps In India [2022]
+{% endblock pagetitle %}
+
+{% block pagedescription %}
+List of Top {{filterset.count}} Best Cryptocurrency &amp; NFT trading Apps In India [2022]:-
+{% for prod in filterset %}
+{{forloop.counter}}) {{prod.name}}.
+{% endfor %}
+*Click to Know the pro and cons, detailed Reveiw by Users ,Detailed Brokerage charge,Youtube Comparison Links and
+more...
+{% endblock pagedescription %}
+
+{% block pagestyle %}
+#livedot {
+  display: inline;
+animation: blink-animation 1s steps(5, start) infinite;
+-webkit-animation: blink-animation 1s steps(5, start) infinite;
+}
+@keyframes blink-animation {
+to {
+  visibility: hidden;
+}
+}
+@-webkit-keyframes blink-animation {
+to {
+  visibility: hidden;
+}
+}
+.pricecol{
+border: 1px solid rgb(217, 217, 217);
+padding-bottom: 5px;
+padding-top: 5px;
+}
+{%endblock%}
+
+<!-- Here we are going to include the Headlink slider (this is included in all pages) -->
+<!--Import proablem -->
+<!--While i am trying to include the basic folder the include does not work and also it does not giving an error -->
+<!--Solution-->
+<!--Another situation where an include statement will fail without raising an error is if you are working in a template which extends another, and your include is outside of a named block:
+In this case file2.html will not be included because it is not in a block, and you will get no warning messages, and will try all sorts of things before you realise what you've done :-)-->
+<!--That means if your current template is have extend tag then you must use include inside q block of extended tag -->
+{% block headerlinks %}
+{% include "headerlinkslider_basic.html" with prodcatglist_allobjects=prodcatglist_allobjects %}
+{% endblock headerlinks %}
+<!-- head link slider end here -->
+
+{% block blogheading %}
+Top {{filterset.count}} Best Cryptocurrency &amp; NFT trading Apps In India [2022]
+{% endblock blogheading %}
+
+{% block readingtime %}
+less than a minute
+{% endblock readingtime %}
+
+{% comment %} Live Crypto price starts here  {% endcomment %}
+{% block apivalue %}
+<div class="container container-sm pb-1 mb-2" style="box-shadow: 0px 1px 2px #999292;">
+  <div class="row row-cols-lg-4 row-cols-md-4 row-cols-2">
+      {% for key,cryptocoin in cryptodict.items %}
+      <div class="col pricecol">
+          <div class="text-secondary fw-bold fs-4">{{key}}</div>
+          <div class="fs-5">&dollar; {{cryptocoin.price}} (<span class="text-{{cryptocoin.color}}"> {{cryptocoin.change}} &percnt; </span>)</div>
+      </div>
+      {%empty%}
+      <img src="https://img.icons8.com/emoji/48/000000/backhand-index-pointing-down-emoji.png"/>Read Below.(Live Crypto prices not loaded !)
+      {% endfor %}
+  </div>
+      <span id="livedot"><img src="https://img.icons8.com/material-rounded/15/26e07f/filled-circle.png"/></span>
+      <span class="text-success fs-5 fw-bold">Live</span>
+      <span class="text-secondary">(price will update in every 15 min)</span>
+</div>
+{% endblock apivalue %}
+{% comment %} Live Crypto price Ends here  {% endcomment %}
+
+{% block summarytable %}
+<p class="fw-bold text-primary fs-4 text-center mt-2">Apps List Summary</p>
+<thead>
+    <tr class="text-secondary">
+        <th>#</th>
+        <th>Name</th>
+        <th>AOC</th>
+        <th>Maker,Taker fees</th>
+        <th>Crypto available</th>
+        <th>Visit Link</th>
+    </tr>
+</thead>
+<tbody>
+    {% for prod in prodset %}
+    <tr>
+        <th>{{forloop.counter}}</th>
+        <td>{{prod.name}}</td>
+        <td>
+            &#8377; {{prod.aoc}}
+        </td>
+        <td>
+            {{prod.makerfees}}&percnt;,{{prod.takerfees}}&percnt;
+        </td>
+        <td>
+            {{prod.cryptoavialable}}+
+        </td>
+        <td>
+            {{prod.idc}} <br><span class="text-secondary">per order<br>whichever is Lower</span>
+        </td>
+        <td>
+            <a href="{{prod.applink}}"><button type="button" class="btn btn-success btn-sm">{{prod.name}}</button></a>
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>
+{% endblock summarytable %}
+
+{% block sourceofinformation %}
+*Source of Information :- Financial websites , App official Websites , Other Blogs.
+{% endblock sourceofinformation %}
+
+
+{% block pagebody %}
+
+<!--  table of contents starts here -->
+{% include 'tableofcontents_basic.html' with prodset=prodset %}
+<!-- table of contents Ends here -->
+
+{% for prod in prodset %}
+    <!-- //First Product starts Here -->
+
+  <!-- First product heading starts here  -->
+    {% comment %} here you are given a variabe prod which contains all information for one product  {% endcomment %}
+
+  <div class="container-sm container" id="prod{{forloop.counter}}">
+    <div class="row">
+      <div class="col-2 col-md-1 col-lg-1 text-center my-auto fs-2 bg-danger fw-bold text-white">
+        {{forloop.counter}}
+      </div>
+      <div class="col-10 col-md-11 col-lg-11 fs-2 fw-bold bg-secondary bg-opacity-10 lh-sm">
+        {{prod.name}}
+      </div>
+    </div>
+  </div>
+  <!-- First product heading Ends here  -->
+
+  <!-- First Product image starts here  -->
+  <div class="container border border-secondary mt-2">
+    <img src="/media/{{prod.appimg}}" alt="{{prod.name}} App image" class="img-fluid d-block mx-auto">
+  </div>
+  <!-- First Product image Ends here  -->
+
+  <!-- Product score (for 1st product) starts here  -->
+  <p class="fs-4 fw-bold text-danger text-center mt-2 mb-3">Begginers rating : {{prod.rating}}/5</p>
+  <!-- Product score (for 1st product) Ends here  -->
+
+  <!-- Basic product Details with icons(for 1st product) starts here -->
+  <div class="container">
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-3">
+      <div class="col mb-3">
+        <div class="row">
+          <div class="col-4">
+            <img src="https://img.icons8.com/office/40/000000/test-account.png" alt="AOC"/>
+          </div>
+          <div class="col-8">
+            <div class="row">
+              <div class="row fw-bold">Account Opening charge</div>
+              <div class="row">{{prod.aoc}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col mb-3">
+        <div class="row">
+          <div class="col-4 ">
+            <img src="https://img.icons8.com/office/40/000000/cash.png" alt="Makers takers fees"/>
+          </div>
+          <div class="col-8">
+            <div class="row">
+              <div class="row fw-bold lh-sm">Makers,Taker fees</div>
+              <div class="row">{{prod.makerfees}}&percnt;,{{prod.takerfees}}&percnt;</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col mb-3">
+        <div class="row">
+          <div class="col-4">
+            <img src="https://img.icons8.com/color/40/000000/bitcoin--v1.png" alt="Crypto avialable"/>
+          </div>
+          <div class="col-8">
+            <div class="row">
+              <div class="row fw-bold">Cryptos Avialable</div>
+              <div class="row lh-1">{{prod.cryptoavialable}}+</div>
+              <!-- &#8377; is symbol for Rupee and &#37; is for %  -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col mb-3">
+        <div class="row">
+          <div class="col-4">
+            <img src="https://img.icons8.com/external-justicon-lineal-color-justicon/40/000000/external-atm-gambling-justicon-lineal-color-justicon.png" alt="Withdrawl fees"/>
+          </div>
+          <div class="col-8">
+            <div class="row">
+              <div class="row fw-bold">Withdrawl fees</div>
+              <div class="row">{{prod.withdrawlfees}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col mb-3">
+        <div class="row">
+          <div class="col-4">
+            <img src="https://img.icons8.com/external-icongeek26-outline-gradient-icongeek26/40/000000/external-alert-alert-icongeek26-outline-gradient-icongeek26-1.png" alt="Minimum Withdrawl limit"/>
+          </div>
+          <div class="col-8">
+            <div class="row">
+              <div class="row fw-bold">Minimum Withdrawl limit</div>
+              <div class="row">{{prod.minwdllimit}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col mb-3">
+        <div class="row">
+          <div class="col-4">
+            <img src="https://img.icons8.com/external-vitaliy-gorbachev-lineal-color-vitaly-gorbachev/40/000000/external-building-museum-vitaliy-gorbachev-lineal-color-vitaly-gorbachev.png" alt="founded"/>
+          </div>
+          <div class="col-8">
+            <div class="row">
+              <div class="row fw-bold">Founded in</div>
+              <div class="row">{{prod.est}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Basic product Details with icons(for 1st product) Ends here -->
+  <hr>
+  
+  {% comment %} Here include the procons_and_userreveiws.html with prod as a varible given to that  {% endcomment %}
+  {% include 'procons_and_userreveiws_basic.html' with prod=prod%}
+
+  <!-- Buy link (for 1st product) starts here  -->
+  <div class="container p-0 fs-4 lh-1 fw-bold mt-3 mb-3">
+
+    <!-- here also you add account opening link or think what you have to adda here  -->
+    <a href="{{prod.applink}}" target="_blank">
+      <button type="button" class="btn btn-success w-100 fs-4 p-2 fw-bold">Start investing in Crypto with {{prod.name}} @now</button>
+    </a>
+    <!-- first product youtube review / Unboxing video link starts here  -->
+    <p class="text-lg-center text-md-center text-sm-start mt-2"><a href="{{prod.youtubelink}}"
+        class="fs-5 text-secondary" target="_blank"><img
+          src="https://img.icons8.com/color/48/000000/youtube-play.png" />Click to Watch Best Reveiw / Comparison Of this App
+        on Youtube</a></p>
+    <!-- First product youtube Reveiw / unboxing Link Ends here  -->
+  </div>
+  <!-- Buy link (for 1st product) Ends here  -->
+
+  <!-- Full specification button (For 1st Product) starts here  -->
+<div class="container">
+    <p class="text-end">
+        <button class="btn btn-outline-danger" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+            aria-expanded="false" aria-controls="collapseExample">
+            See more details..
+        </button>
+    </p>
+    <div class="collapse container container-sm" id="collapseExample">
+        <div class="card card-body">
+            <!-- Full specification Starts here -->
+           <!--Here no any specification-->
+           <a href="{{prod.applink}}" class="text-blue text-decoration-none">&#11088; Please Visit Platform for more details</a>
+           <div class="text-center container container-sm">
+               <img src="/media/common/img/doge_dog.png" class="img-fluid mx-auto" alt="Doge_happy">
+           </div>
+            
+        </div>
+    </div>
+</div>
+<!-- Full specification Ends Here  -->
+  {% empty %}
+<h2 class="text-center">Sorry no product found</h2>
+<div class="container container-sm text-center">
+    <img src="/media/common/img/product_not_found.png" alt="Products Not Found" class="img-fluid">
+</div>
+  <!-- First product ends here  -->
+{% endfor %}
+{% endblock pagebody %}

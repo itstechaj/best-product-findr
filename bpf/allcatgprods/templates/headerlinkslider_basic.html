@@ -1,0 +1,29 @@
+<!-- take a list of list (name = "list_of_prodcatg_prodsubcatg") of all the product category and product subcategory on the home page  -->
+<!--the list of prodcatg,prodsubcatg (inside list_of_prodcatg_prodsubcatg) are alredy modified according to links (maens that all the spaces are alreaady replaced with '-')-->
+<!--so the inner list is in given order -> ['prodcatg','prodsubcatg'] so we can use list[0] and list[1] to access prodcatg and subcatg indivisually -->
+{% load customfilters %}
+<!-- Header link slider starts here  -->
+<div class="container-fluid sticky-top d-flex justify-content-evenly p-0 mt-1" id="linkslider_box">
+    <button id="prev" class="btn ms-lg-2 ms-md-1 ms-sm-0 p-0"><img src="https://img.icons8.com/ios/30/000000/chevron-left.png" class="img-fluid" alt="Prev"/></button>
+  <ul class="list-group list-group-horizontal overflow-hidden list-group-item-action text-nowrap" id="linkslider_ul">
+    {% for prod in prodcatglist_allobjects %}
+    <a href="/{{prod.catg|replacewithdash}}/{{prod.subcatg|replacewithdash}}/" class="text-decoration-none" ><li class="list-group-item">{{prod.subcatg|replacewithdash}}</li></a>
+    {% endfor %}
+  </ul>
+  <button id="next" class="btn btn-sm me-lg-2 me-sm-0 me-md-2 p-0"><img src="https://img.icons8.com/ios/30/000000/chevron-right.png" class="img-fluid" alt="Next"/></button>
+</div>
+<!-- Header link slider Ends here  -->
+
+<!-- Java script for header link slider  -->
+  <script>
+    const buttonRight = document.getElementById('next');
+  const buttonLeft = document.getElementById('prev');
+
+  buttonRight.onclick = function () {
+    document.getElementById('linkslider_ul').scrollLeft += 250;
+  };
+  buttonLeft.onclick = function () {
+    document.getElementById('linkslider_ul').scrollLeft -= 250;
+  };
+  </script>
+<!-- Java script for header link slider  -->

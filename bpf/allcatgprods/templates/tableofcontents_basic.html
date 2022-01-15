@@ -1,0 +1,20 @@
+<!-- We have got prodset (collection of all the products in database ) here. -->
+
+<!-- Table of content starts here -->
+<button class="btn btn-secondary d-flex p-1" id="tableofcontent_button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><img src="https://img.icons8.com/material-outlined/25/ffffff/table-of-content.png" class="img-fluid" alt="toc"/></button>
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Table of Contents :-</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div id="list-example" class="list-group ">
+      <!-- write this below anchor tag inside the for  loop  -->
+      {% for prod in prodset %}
+      <button class="list-group-item list-group-item-action" data-bs-dismiss="offcanvas" aria-label="Close" ><a href="#prod{{forloop.counter}}" class="d-block text-decoration-none" ><code>{{forloop.counter}}.</code> {{prod.name}}</a></button>
+      {% endfor %}
+      <button class="list-group-item list-group-item-action" data-bs-dismiss="offcanvas" aria-label="Close" ><a href="#topofpage" class="d-block text-decoration-none"><code>*</code> Product List summary Table</a></button>
+    </div>
+  </div>
+</div>
+ <!-- Table of content Ends here -->

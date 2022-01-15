@@ -1,0 +1,129 @@
+{% extends 'basic.html' %}
+
+{% block pagetitle %}Best Product Finder{% endblock pagetitle %}
+
+{% block pagestyle %}
+{% comment %} Enter your extra style (ig - reveiw form style) here  {% endcomment %}
+/* CSS for the Review form Attached  */
+    /* Style inputs with type="text", select elements and textareas */
+.username, .usermail,.usertelephone, textarea {
+  display: block;
+  width: 100%; /* Full width */
+  padding: 12px; /* Some padding */ 
+  border: 1px solid #ccc; /* Gray border */
+  border-radius: 4px; /* Rounded borders */
+  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  margin-top: 6px; /* Add a top margin */
+  margin-bottom: 16px; /* Bottom margin */
+  resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+/* Style the submit button with a specific background color etc */
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+/* Add a background color and some padding around the form */
+.reviewform{
+  border-radius: 5px;
+  padding: 20px;
+}
+/* Css for Reveiw Form stops Here  */
+{% endblock pagestyle %}
+
+<!--Submit message starts here -->
+{% block pagebody %}
+{% for msg in messages %}
+<div class="alert alert-{{msg.tags}} alert-dismissible fade show" role="alert">
+  <strong>Message : </strong> {{msg}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+<!--Submit message starts here -->
+
+<!-- Reveiw Form starts here-->
+
+<div class="container-sm container-md container-lg">
+    <h4 class="mt-5 ml-3 text-primary mx-3">Reveiw / Suggest :-</h4>
+    <form action="" class="reviewform fs-5 needs-validation" novalidate method="post"> 
+      {% csrf_token %}
+  
+      <label for="name" style="font-weight:600;">Name</label>
+      <input type="text" id="name" name="name" placeholder="Your name.." class="username form-control" required>
+  
+      <label for="email" style="font-weight:600;">Email</label>
+      <input type="email" id="email" name="email" placeholder="Your Email.." class="usermail form-control" required>
+      
+      <label for="phone" style="font-weight:600;">Contact No.</label>
+      <input type="tel" name="phone" id="phone" placeholder="Your Contact number.." class="usertelephone form-control" >
+  
+      <label for="message" style="font-weight:600;">Write Your message..</label>
+      <textarea id="message" name="message" placeholder="Write something.." style="height:200px" class="form-control" required></textarea>
+
+      <!-- <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-primary active">
+          <input type="radio" name="options" style="display: none;" id="option" checked> Apple
+        </label>
+        <label class="btn btn-primary">
+          <input type="radio" name="options" style="display: none;" id="option"> Samsung
+        </label>
+        <label class="btn btn-primary">
+          <input type="radio" name="options" style="display: none;" id="options"> Sony
+        </label>
+      </div> -->
+      <label for="emojirating">Select one Emoji for your experiance with us:-</label>
+      <div class="btn-toolbar container reviewform ps-0 mb-3" id="emojirating" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group me-2" role="group" aria-label="First group">
+            <button type="button" class="btn btn-light bg-white mx-lg-2 mx-md-1 mx-sm-0">
+          <label for="vhappy" class="text-secondary"><img src="https://img.icons8.com/emoji/48/000000/smiling-face-with-smiling-eyes.png"/><input type="radio" style="display: none;" name="emojioption" id="vhappy" value="vhappy"><br>Very Happy</label>
+            </button>
+            <button type="button" class="btn btn-light bg-white mx-lg-2 mx-md-1 mx-sm-0">
+          <label for="happy" class="text-secondary"><img src="https://img.icons8.com/fluency/48/000000/happy.png"/><input type="radio" style="display: none;" name="emojioption" id="happy" value="happy"><br>Happy</label>
+            </button>
+            <button type="button" class="btn btn-light bg-white mx-lg-2 mx-md-1 mx-sm-0">
+          <label for="neutral" class="text-secondary"><img src="https://img.icons8.com/emoji/48/000000/neutral-face.png"/><input type="radio" style="display: none;" name="emojioption" id="neutral" value="neutral"><br>It's Ok</label>
+            </button>
+            <button type="button" class="btn btn-light bg-white mx-lg-2 mx-md-1 mx-sm-0">
+          <label for="sad" class="text-secondary"><img src="https://img.icons8.com/emoji/48/000000/disappointed-face.png"/><input type="radio" style="display: none;" name="emojioption" id="sad" value="sad"><br>Disappointed</label>
+            </button>
+        </div>
+      </div>
+      <input type="submit" value="Submit">
+
+    </form>
+  </div>
+
+  <!-- Reveiw form Ends here  -->
+  <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+  </script>
+{% endblock pagebody %}
