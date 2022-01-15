@@ -1,4 +1,5 @@
 {% extends 'allcatgprods_basic.html' %}
+{% load static %}
 <!--Max price i sa custom build fiter which gives us the max price product (minp pe filter lgega) present in the filtered set-->
 {% block pagetitle %}
 {% comment %} here the checkcatg will chaeck the special category value if it is general the it return " "(one space)
@@ -152,7 +153,7 @@ less than a minute
 
 <!-- First Product image starts here  -->
 <div class="container mt-2">
-    <img src="/media/{{prod.prodimg}}" alt="{{prod.name}} image" class="img-fluid d-block mx-auto">
+    <img src="/static/media/{{prod.prodimg}}" alt="{{prod.name}} image" class="img-fluid d-block mx-auto">
 </div>
 <!-- First Product image Ends here  -->
 
@@ -258,33 +259,30 @@ less than a minute
         <p class="text-center fw-bold fs-3">Price Comparison</p>
         <div class="row row-cols-lg-4 row-cols-2 text-center">
             <div class="col buy_logo_col">
-                <a href="{{prod.amazonlink}}" class="d-flex flex-column" target="_blank">
-                    <img src="/media/common/e_commerce/img/amazon.jpg" alt="Amazon Logo" class="img-fluid sell_logo">
-                    <span>{{prod.amazonp}}</span>
-                </a>
+              <a href="{{prod.amazonlink}}" class="d-flex flex-column" target="_blank">
+                <img src="{% static '/media/common/e_commerce/img/amazon.jpg'%}" alt="Amazon Logo" class="img-fluid sell_logo">
+                <span>{{prod.amazonp}}</span>
+              </a>
             </div>
             <div class="col buy_logo_col">
-                <a href="{{prod.flipkartlink}}" class="d-flex flex-column" target="_blank">
-                    <img src="/media/common/e_commerce/img/flipkart.png" alt="Flipkart Logo"
-                        class="img-fluid sell_logo">
-                    <span>{{prod.flipkartp}}</span>
-                </a>
+              <a href="{{prod.flipkartlink}}" class="d-flex flex-column" target="_blank">
+                <img src="{% static '/media/common/e_commerce/img/flipkart.png'%}" alt="Flipkart Logo" class="img-fluid sell_logo">
+                <span>{{prod.flipkartp}}</span>
+              </a>
             </div>
             <div class="col buy_logo_col">
-                <a href="{{prod.reliancelink}}" class="d-flex flex-column" target="_blank">
-                    <img src="/media/common/e_commerce/img/reliance_digital.png" alt="Reliance Digital logo"
-                        class="img-fluid sell_logo">
-                    <span>{{prod.reliancep}}</span>
-                </a>
+              <a href="{{prod.reliancelink}}" class="d-flex flex-column" target="_blank">
+                <img src="{% static '/media/common/e_commerce/img/reliance_digital.png'%}" alt="Reliance Digital logo" class="img-fluid sell_logo">
+                <span >{{prod.reliancep}}</span>
+              </a>
             </div>
             <div class="col buy_logo_col">
-                <a href="{{prod.officiallink}}" class="d-flex flex-column" target="_blank">
-                    <img src="/media/common/e_commerce/img/officialwebsite.png" alt="Product Official Website"
-                        class="img-fluid sell_logo">
-                    <span>{{prod.officialp}}</span>
-                </a>
+              <a href="{{prod.officiallink}}" class="d-flex flex-column" target="_blank">
+                <img src="{% static '/media/common/e_commerce/img/officialwebsite.png'%}" alt="Product Official Website" class="img-fluid sell_logo">
+                <span>{{prod.officialp}}</span>
+              </a>
             </div>
-        </div>
+          </div>
     </div>
     <!--Price range at diffrent stores ends here  -->
     <a href="{{prod.minplink}}" class="text-decoration-none" target="_blank">
@@ -318,7 +316,7 @@ less than a minute
            <!--Here no any specification-->
            <a href="{{prod.minplink}}" class="text-blue text-decoration-none">&#11088; Click Me for more Specification</a>
            <div class="text-center container container-sm">
-               <img src="/media/common/img/doge_dog.png" class="img-fluid mx-auto" alt="Doge_happy">
+               <img src="{% static '/media/common/img/doge_dog.png'%}" class="img-fluid mx-auto" alt="Doge_happy">
            </div>
             <!-- Full specification Ends Here  -->
         </div>
@@ -326,9 +324,9 @@ less than a minute
 </div>
 {% empty %}
 <h2 class="text-center">Sorry no product found</h2>
-<div class="container container-sm text-center">
-    <img src="/media/common/img/product_not_found.png" alt="Products Not Found" class="img-fluid">
-</div>
+  <div class="container container-sm text-center">
+    <img src="{% static '/media/common/img/product_not_found.png'%}" alt="Products Not Found" class="img-fluid">
+  </div>
 {% endfor %}
 
 <!--We have added a script below to change the price range select selected value (actually when apply apply  -->

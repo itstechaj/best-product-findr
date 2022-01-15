@@ -29,5 +29,5 @@ urlpatterns = [
     #from here you must write the Path as same as Main category on homepage
     #give angular brackets <> in path take that given variable and transfer it to views.py
     path('<catgname>/',include("allcatgprods.urls")),
-]
+]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

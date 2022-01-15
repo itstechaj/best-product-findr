@@ -1,4 +1,5 @@
 {% extends 'allcatgprods_basic.html' %}
+{% load static %}
 {% block pagetitle %}
 Top {{filterset.count}} Best Cryptocurrency &amp; NFT trading Apps In India [2022]
 {% endblock pagetitle %}
@@ -143,7 +144,7 @@ less than a minute
 
   <!-- First Product image starts here  -->
   <div class="container border border-secondary mt-2">
-    <img src="/media/{{prod.appimg}}" alt="{{prod.name}} App image" class="img-fluid d-block mx-auto">
+    <img src="/static/media/{{prod.appimg}}" alt="{{prod.name}} App image" class="img-fluid d-block mx-auto">
   </div>
   <!-- First Product image Ends here  -->
 
@@ -271,7 +272,7 @@ less than a minute
            <!--Here no any specification-->
            <a href="{{prod.applink}}" class="text-blue text-decoration-none">&#11088; Please Visit Platform for more details</a>
            <div class="text-center container container-sm">
-               <img src="/media/common/img/doge_dog.png" class="img-fluid mx-auto" alt="Doge_happy">
+               <img src="{% static '/media/common/img/doge_dog.png'%}" class="img-fluid mx-auto" alt="Doge_happy">
            </div>
             
         </div>
@@ -279,10 +280,10 @@ less than a minute
 </div>
 <!-- Full specification Ends Here  -->
   {% empty %}
-<h2 class="text-center">Sorry no product found</h2>
-<div class="container container-sm text-center">
-    <img src="/media/common/img/product_not_found.png" alt="Products Not Found" class="img-fluid">
-</div>
+  <h2 class="text-center">Sorry no product found</h2>
+  <div class="container container-sm text-center">
+    <img src="{% static '/media/common/img/product_not_found.png'%}" alt="Products Not Found" class="img-fluid">
+  </div>
   <!-- First product ends here  -->
 {% endfor %}
 {% endblock pagebody %}

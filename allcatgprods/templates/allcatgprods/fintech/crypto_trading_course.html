@@ -1,4 +1,5 @@
 {% extends 'allcatgprods_basic.html' %}
+{% load static %}
 <!--Max price i sa custom build fiter which gives us the max price product (minp pe filter lgega) present in the filtered set-->
 {% block pagetitle %}
 {% comment %} here the checkcatg will chaeck the special category value if it is general the it return " "(one space)
@@ -106,7 +107,7 @@ less than a minute
 
 <!-- First Product image starts here  -->
 <div class="container mt-2">
-    <img src="/media/{{prod.prodimg}}" alt="{{prod.name}} image" class="img-fluid d-block mx-auto">
+    <img src="/static/media/{{prod.prodimg}}" alt="{{prod.name}} image" class="img-fluid d-block mx-auto">
 </div>
 <!-- First Product image Ends here  -->
 
@@ -233,7 +234,7 @@ less than a minute
            <p class="fs-5">Course tutor : {{prod.courseteacher}} <p>
            <a href="{{prod.courselink}}" class="text-blue text-decoration-none">&#11088; Click Me for more Specification</a>
            <div class="text-center container container-sm">
-               <img src="/media/common/img/doge_dog.png" class="img-fluid mx-auto" alt="Doge_happy">
+               <img src="{% static '/media/common/img/doge_dog.png'%}" class="img-fluid mx-auto" alt="Doge_happy">
            </div>
             <!-- Full specification Ends Here  -->
         </div>
@@ -241,9 +242,9 @@ less than a minute
 </div>
 {% empty %}
 <h2 class="text-center">Sorry no product found</h2>
-<div class="container container-sm text-center">
-    <img src="/media/common/img/product_not_found.png" alt="Products Not Found" class="img-fluid">
-</div>
+  <div class="container container-sm text-center">
+    <img src="{% static '/media/common/img/product_not_found.png'%}" alt="Products Not Found" class="img-fluid">
+  </div>
 {% endfor %}
 
 <!--We have added a script below to change the price range select selected value (actually when apply apply  -->

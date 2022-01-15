@@ -1,4 +1,5 @@
 {% extends 'allcatgprods_basic.html' %}
+{% load static %}
 {% load customfilters %}
 <!--Max price i sa custom build fiter which gives us the max price product (minp pe filter lgega) present in the filtered set-->
 {% load customfilters %}
@@ -155,7 +156,7 @@ Best {{spclcatg|checkspclcatg}} Laptops under &#8377; {{maximumprice}} in India 
 
   <!-- First Product image starts here  -->
   <div class="container mt-2">
-    <img src="/media/{{prod.prodimg}}" alt="{{prod.name}} image" class="img-fluid d-block mx-auto">
+    <img src="/static/media/{{prod.prodimg}}" alt="{{prod.name}} image" class="img-fluid d-block mx-auto">
   </div>
   <!-- First Product image Ends here  -->
 
@@ -266,25 +267,25 @@ Best {{spclcatg|checkspclcatg}} Laptops under &#8377; {{maximumprice}} in India 
       <div class="row row-cols-lg-4 row-cols-2 text-center">
         <div class="col buy_logo_col">
           <a href="{{prod.amazonlink}}" class="d-flex flex-column" target="_blank">
-            <img src="/media/common/e_commerce/img/amazon.jpg" alt="Amazon Logo" class="img-fluid sell_logo">
+            <img src="{% static '/media/common/e_commerce/img/amazon.jpg'%}" alt="Amazon Logo" class="img-fluid sell_logo">
             <span>{{prod.amazonp}}</span>
           </a>
         </div>
         <div class="col buy_logo_col">
           <a href="{{prod.flipkartlink}}" class="d-flex flex-column" target="_blank">
-            <img src="/media/common/e_commerce/img/flipkart.png" alt="Flipkart Logo" class="img-fluid sell_logo">
+            <img src="{% static '/media/common/e_commerce/img/flipkart.png'%}" alt="Flipkart Logo" class="img-fluid sell_logo">
             <span>{{prod.flipkartp}}</span>
           </a>
         </div>
         <div class="col buy_logo_col">
           <a href="{{prod.reliancelink}}" class="d-flex flex-column" target="_blank">
-            <img src="/media/common/e_commerce/img/reliance_digital.png" alt="Reliance Digital logo" class="img-fluid sell_logo">
+            <img src="{% static '/media/common/e_commerce/img/reliance_digital.png'%}" alt="Reliance Digital logo" class="img-fluid sell_logo">
             <span >{{prod.reliancep}}</span>
           </a>
         </div>
         <div class="col buy_logo_col">
           <a href="{{prod.officiallink}}" class="d-flex flex-column" target="_blank">
-            <img src="/media/common/e_commerce/img/officialwebsite.png" alt="Product Official Website" class="img-fluid sell_logo">
+            <img src="{% static '/media/common/e_commerce/img/officialwebsite.png'%}" alt="Product Official Website" class="img-fluid sell_logo">
             <span>{{prod.officialp}}</span>
           </a>
         </div>
@@ -510,11 +511,6 @@ Best {{spclcatg|checkspclcatg}} Laptops under &#8377; {{maximumprice}} in India 
         </div>
         <!-- Seventh Row of specification Ends here  -->
         <hr>
-
-
-
-
-
         <!-- Full specification Ends Here  -->
       </div>
     </div>
@@ -525,7 +521,7 @@ Best {{spclcatg|checkspclcatg}} Laptops under &#8377; {{maximumprice}} in India 
   {% empty %}
   <h2 class="text-center">Sorry no product found</h2>
   <div class="container container-sm text-center">
-    <img src="/media/common/img/product_not_found.png" alt="Products Not Found" class="img-fluid">
+    <img src="{% static '/media/common/img/product_not_found.png'%}" alt="Products Not Found" class="img-fluid">
   </div>
 {% endfor %}
 

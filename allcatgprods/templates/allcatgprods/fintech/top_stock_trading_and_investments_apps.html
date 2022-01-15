@@ -1,4 +1,5 @@
 {% extends 'allcatgprods_basic.html' %}
+{% load static %}
 {% block pagetitle %}
 Best Stock Brokers in India for Beginners [2022]
 {% endblock pagetitle %}
@@ -131,7 +132,7 @@ Best Stock Broking Apps in India For Beginners<br>(complete guide)
 
   <!-- First Product image starts here  -->
   <div class="container border border-secondary mt-2">
-    <img src="/media/{{prod.appimg}}" alt="{{prod.name}} App image" class="img-fluid d-block mx-auto">
+    <img src="/static/media/{{prod.appimg}}" alt="{{prod.name}} App image" class="img-fluid d-block mx-auto">
   </div>
   <!-- First Product image Ends here  -->
 
@@ -363,10 +364,10 @@ Best Stock Broking Apps in India For Beginners<br>(complete guide)
   </div>
   <!-- Full Specification button (For 1st product) Ends here  -->
   {% empty %}
-<h2 class="text-center">Sorry no product found</h2>
-<div class="container container-sm text-center">
-    <img src="/media/common/img/product_not_found.png" alt="Products Not Found" class="img-fluid">
-</div>
+  <h2 class="text-center">Sorry no product found</h2>
+  <div class="container container-sm text-center">
+    <img src="{% static '/media/common/img/product_not_found.png'%}" alt="Products Not Found" class="img-fluid">
+  </div>
   <!-- First product ends here  -->
 {% endfor %}
 {% endblock pagebody %}
