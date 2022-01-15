@@ -18,8 +18,6 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
-from django.conf.urls import url
-from django.views.static import serve
 
 from . import views
 
@@ -31,6 +29,5 @@ urlpatterns = [
     #from here you must write the Path as same as Main category on homepage
     #give angular brackets <> in path take that given variable and transfer it to views.py
     path('<catgname>/',include("allcatgprods.urls")),
-    url(r'^media/(?P<path>.*)$', serve,{'document_root':settings.MEDIA_ROOT}), 
-    url(r'^static/(?P<path>.*)$', serve,{'document_root':settings.STATIC_ROOT}), 
-]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+]
+# ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

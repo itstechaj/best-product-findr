@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-no06zfo21fb1rqcxjmwba_qemkg6nt-$st8*yxs3fl3z7w+6ec
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1','best-product-findr.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1','bestproductfindr.herokuapp.com']
 
 
 # Application definition
@@ -125,8 +125,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 # setting the media files
-MEDIA_ROOT=os.path.join(BASE_DIR,'media') #this is to show the media files in Debug=True enviornment
-MEDIA_URL='/media/'
+# MEDIA_ROOT=os.path.join(BASE_DIR,'media') #this is to show the media files in Debug=True enviornment
+# MEDIA_URL='/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

@@ -1,5 +1,5 @@
 {% extends 'basic.html' %}
-
+{% load static %}
 {% block pagetitle %}Best Product Finder{% endblock pagetitle %}
 
 {% block pagestyle %}
@@ -15,7 +15,7 @@ background-color:black;
 
 <div class="container-lg container-md container-sm p-0">
   <video id="aboutvideo" class="embed-responsive embed-responsive-16by9" controls autoplay loop>
-    <source src="/media/aboutus/video/aboutusclip.mp4" type="video/mp4">
+    <source src="{% static '/media/aboutus/video/aboutusclip.mp4' %}" type="video/mp4">
   </video>
 </div>
 <!-- //who we are ,our mission details starts here  -->
@@ -110,7 +110,7 @@ background-color:black;
     <div class="col p-lg-2 p-md-2 p-sm-1">
       <div class="card text-center" style="background-color: #fbfbb5;">
         <div class="d-flex justify-content-center">
-        <img src="/media/aboutus/img/abhijitpic.png" width="150" height="150" class="rounded-circle shadow" alt="Abhijit kumar">
+        <img src="{% static '/media/aboutus/img/abhijitpic.png' %}" width="150" height="150" class="rounded-circle shadow" alt="Abhijit kumar">
       </div>
         <div class="card-body">
           <h4 class="card-title mb-1">Abhjit Kumar</h4>
