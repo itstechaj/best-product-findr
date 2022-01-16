@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os #imported here by me
 from django.contrib.messages import constants as messages #import  by me to use messages
+import django_heroku
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -138,3 +139,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
+
+django_heroku.settings(locals())
