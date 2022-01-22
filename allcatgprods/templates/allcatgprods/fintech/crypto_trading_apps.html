@@ -5,7 +5,7 @@ Top {{filterset.count}} Best Cryptocurrency &amp; NFT trading Apps In India [202
 {% endblock pagetitle %}
 
 {% block pagedescription %}
-List of Top {{filterset.count}} Best Cryptocurrency &amp; NFT trading Apps In India [2022]:-
+List of Best Cryptocurrency &amp; NFT trading Apps In India [2022]:-
 {% for prod in filterset %}
 {{forloop.counter}}) {{prod.name}}.
 {% endfor %}
@@ -49,7 +49,7 @@ In this case file2.html will not be included because it is not in a block, and y
 <!-- head link slider end here -->
 
 {% block blogheading %}
-Top {{filterset.count}} Best Cryptocurrency &amp; NFT trading Apps In India [2022]
+Best Cryptocurrency &amp; NFT trading Apps In India [2022]
 {% endblock blogheading %}
 
 {% block readingtime %}
@@ -89,7 +89,7 @@ less than a minute
     </tr>
 </thead>
 <tbody>
-    {% for prod in prodset %}
+    {% for prod in filterset %}
     <tr>
         <th>{{forloop.counter}}</th>
         <td>{{prod.name}}</td>
@@ -101,9 +101,6 @@ less than a minute
         </td>
         <td>
             {{prod.cryptoavialable}}+
-        </td>
-        <td>
-            {{prod.idc}} <br><span class="text-secondary">per order<br>whichever is Lower</span>
         </td>
         <td>
             <a href="{{prod.applink}}"><button type="button" class="btn btn-success btn-sm">{{prod.name}}</button></a>
@@ -121,10 +118,10 @@ less than a minute
 {% block pagebody %}
 
 <!--  table of contents starts here -->
-{% include 'tableofcontents_basic.html' with prodset=prodset %}
+{% include 'tableofcontents_basic.html' with prodset=filterset %}
 <!-- table of contents Ends here -->
 
-{% for prod in prodset %}
+{% for prod in filterset %}
     <!-- //First Product starts Here -->
 
   <!-- First product heading starts here  -->
@@ -272,7 +269,7 @@ less than a minute
            <!--Here no any specification-->
            <a href="{{prod.applink}}" class="text-blue text-decoration-none">&#11088; Please Visit Platform for more details</a>
            <div class="text-center container container-sm">
-               <img src="{% static '/media/common/img/doge_dog.png'%}" class="img-fluid mx-auto" alt="Doge_happy">
+               <img src="{% static '/media/common/img/scared_boy_meme.png'%}" class="img-fluid mx-auto" alt="Scared_boy_meme">
            </div>
             
         </div>

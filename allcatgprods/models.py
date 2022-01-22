@@ -232,7 +232,7 @@ class earpod(commonclass,price):
     rank=models.PositiveSmallIntegerField(verbose_name="Rank of product")
     model=models.CharField(verbose_name="Model No.",max_length=30)
     playbacktime=models.CharField(verbose_name="Play time after full charge",max_length=100)#here we give earpod play time after full charge
-    inbuitmic=models.CharField(verbose_name="In-built mic",max_length=50)#here we ans as Yes and No
+    inbuiltmic=models.CharField(verbose_name="In-built mic",max_length=50)#here we ans as Yes and No
     color=models.CharField(verbose_name="Product color",max_length=50)#here we give color
     dimension=models.CharField(verbose_name="Enter dimension (with weight)",max_length=200) #here we give dimension +weight of Earpod
     battery=models.CharField(verbose_name="Full battery details",max_length=150) #here we give Full battery details
