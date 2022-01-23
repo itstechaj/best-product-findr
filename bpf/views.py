@@ -53,7 +53,7 @@ def review(request):
                     import datetime
                     obj=reviewform(name=name,email=email,phone=mob,message=msg,rating=rating,submit_time=datetime.datetime.now())
                     obj.save()
-                    messages.success(request,f"\U0001F60A Dear {name},Thank you for our time ,your form Submitted Successfuly,we will look into it Asap.")
+                    messages.success(request,f"\U0001F60A Dear {name},Thank you for Your time ,your form Submitted Successfuly,we will look into it Asap.")
     return render(request,'review.html')
 
 

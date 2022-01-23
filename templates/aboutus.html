@@ -9,15 +9,21 @@ background-color:black;
 }
 {% endblock pagestyle %}
 
-{% block pagedescription %}
-We are the First page of Our Kind
+{% block extraheadspace %}
+<meta property="og:title" content="Best Product Finder/Aboutus" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://bestproductfindr.herokuapp.com/AboutUs/" />
+<meta property="og:image" content="https://bestproductfindr.herokuapp.com/static/media/common/img/mainlogo.png" />
+<meta property="og:description" content="
+We are First page of Our Kind
 And here Why i am saying this.
-1) First 100%  Ad Free Blog.🙂
+1) 100%  Ad Free Blogs
 2) All Category of products at one place
-3) Not Filled with Unrelated things 🤮(Only To the point info)
-4) You Will get Best of Best In your Budget 😊
-5) We focus Both Pro and Cons Equally ⚖️
-{% endblock pagedescription %}
+3) Not Filled with Unrelated things (Only To the point info)
+4) You Will get Best of Best In your Budget
+5) We focus Both Pro and Cons Equally
+" />
+{% endblock extraheadspace %}
 
 {% block pagebody %}
 
@@ -117,7 +123,7 @@ And here Why i am saying this.
 <div class="container-fluid">
   <div class="text-center fs-2 bg-light fw-bold">Our Team &nbsp;<img src="https://img.icons8.com/external-sbts2018-flat-sbts2018/45/000000/external-team-work-from-home-sbts2018-flat-sbts2018.png"/></div>
   <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-2">
-    <div class="col p-lg-2 p-md-2 p-sm-1">
+    <div class="col mx-auto p-lg-2 p-md-2 p-sm-1">
       <div class="card text-center" style="background-color: #fbfbb5;">
         <div class="d-flex justify-content-center">
         <img src="{% static '/media/aboutus/img/abhijitpic.png' %}" width="150" height="150" class="rounded-circle shadow" alt="Abhijit kumar">
@@ -136,7 +142,7 @@ And here Why i am saying this.
         </div>
       </div>
     </div>
-    <div class="col p-lg-2 p-md-2 p-sm-1">
+    {% comment %} <div class="col p-lg-2 p-md-2 p-sm-1">
       <div class="card text-center" style="background-color: #c5ffc5;">
         <div class="d-flex justify-content-center">
         <img src="{% static '/media/aboutus/img/ratneshpic.png'%}" width="150" height="150" class="rounded-circle shadow" alt="Ratnesh kumar">
@@ -173,7 +179,7 @@ And here Why i am saying this.
           </div>
         </div>
       </div>
-    </div>
+    </div> {% endcomment %}
   </div>
 </div>
 <!-- Our core team Ends here  -->
