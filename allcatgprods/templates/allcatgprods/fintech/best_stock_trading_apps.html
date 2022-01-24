@@ -44,24 +44,6 @@ Best Stock Broking Apps in India For Beginners<br>(complete guide)
 1 mins
 {% endblock readingtime %}
 
-{% comment %} Live Crypto price starts here  {% endcomment %}
-{% block apivalue %}
-<div class="container container-sm pb-1 mb-2" style="box-shadow: 0px 1px 2px #999292;">
-  <div class="row row-cols-lg-4 row-cols-md-4 row-cols-2">
-      {% for key,stock in stockdict.items %}
-      <div class="col pricecol">
-          <div class="text-secondary fw-bold fs-4">{{key}}</div>
-          <div class="fs-5">&#8377; {{stock.price}} (<span class="text-{{stock.color}}"> {{stock.change}} &percnt; </span>)</div>
-      </div>
-      {%empty%}
-      <img src="https://img.icons8.com/emoji/48/000000/backhand-index-pointing-down-emoji.png"/>Read Below.(Live Stock prices not loaded !)
-      {% endfor %}
-  </div>
-      <span class="text-secondary">(Previous day data.)</span>
-</div>
-{% endblock apivalue %}
-{% comment %} Live Crypto price Ends here  {% endcomment %}
-
 {% block summarytable %}
 <p class="fw-bold text-primary fs-4 text-center">Apps List Summary</p>
 <thead>

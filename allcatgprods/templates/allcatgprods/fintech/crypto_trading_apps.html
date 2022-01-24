@@ -56,26 +56,6 @@ Best Cryptocurrency &amp; NFT trading Apps In India [2022]
 less than a minute
 {% endblock readingtime %}
 
-{% comment %} Live Crypto price starts here  {% endcomment %}
-{% block apivalue %}
-<div class="container container-sm pb-1 mb-2" style="box-shadow: 0px 1px 2px #999292;">
-  <div class="row row-cols-lg-4 row-cols-md-4 row-cols-2">
-      {% for key,cryptocoin in cryptodict.items %}
-      <div class="col pricecol">
-          <div class="text-secondary fw-bold fs-4">{{key}}</div>
-          <div class="fs-5">&dollar; {{cryptocoin.price}} (<span class="text-{{cryptocoin.color}}"> {{cryptocoin.change}} &percnt; </span>)</div>
-      </div>
-      {%empty%}
-      <img src="https://img.icons8.com/emoji/48/000000/backhand-index-pointing-down-emoji.png"/>Read Below.(Live Crypto prices not loaded !)
-      {% endfor %}
-  </div>
-      <span id="livedot"><img src="https://img.icons8.com/material-rounded/15/26e07f/filled-circle.png"/></span>
-      <span class="text-success fs-5 fw-bold">Live</span>
-      <span class="text-secondary">(price will update in every 15 min)</span>
-</div>
-{% endblock apivalue %}
-{% comment %} Live Crypto price Ends here  {% endcomment %}
-
 {% block summarytable %}
 <p class="fw-bold text-primary fs-4 text-center mt-2">Apps List Summary</p>
 <thead>

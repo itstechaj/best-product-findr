@@ -37,7 +37,7 @@ class price(models.Model):
         abstract = True
     
 #Class for Top Stock Trading and Investments Apps
-class top_stock_trading_and_investments_apps(commonclass): #giving coomonclass as argument means it inherit feilds from the commonclass
+class best_stock_trading_apps(commonclass): #giving coomonclass as argument means it inherit feilds from the commonclass
     rank=models.PositiveSmallIntegerField(verbose_name="App Rank") #stores the Rank at which it displays
     aoc=models.PositiveSmallIntegerField(verbose_name="Account opening charge") #stores Account opening charge
     amc=models.PositiveSmallIntegerField(verbose_name="Account maintenance charge") #stores Account maintenance charge

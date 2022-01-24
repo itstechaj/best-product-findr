@@ -33,64 +33,25 @@ def navigator(request,catgname,subcatgname):
 
     #-------------------------------------------------------------------#
 def fintech(request,catgname,subcatgname):
-    if(subcatgname=="top_stock_trading_and_investments_apps"):
+    if(subcatgname=="best_stock_trading_apps"):
         # path=catgname+"/"+subcatgname #to accessthe template
         myclass=getattr(importlib.import_module(f"allcatgprods.models"),f"{subcatgname}")
         prodset=myclass.objects.all() #prodset stores query set containing all objects of my class
         # working to extract prodcatg model from homemodels.models starts here  
-        stocknamesdict={"Infosys Ltd":'INFY',"Reliance Industries Ltd":'RELIANCE',"TCS Ltd":'TCS',"HDFC Bank Ltd":'HDFCBANK'}
-        apikey="2JUWDOXY0IHC2FNU" #this is api key
-        stockdict={}
-        for stock,key in stocknamesdict.items():
-          url=f"https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={key}.BSE&apikey={apikey}"
-          try:
-            response = requests.get(url)
-            price=(response.json()['Global Quote']['05. price'])
-            change=(response.json()['Global Quote']['10. change percent'])
-            price=price[:-2]
-            change=change[:-3]
-            color="success"
-            if(change[:1]=='-'):
-              color="danger"
-            #   change="-"+change
-            else:
-              change="+"+change
-            temp={"stockname":stock,"price":price,"change":change,"color":color}
-            stockdict.update({f"{stock}":temp})
-          except (ConnectionError,TimeoutError,RuntimeError) as e:
-            print(e)
         # prodcatglist_class=getattr(importlib.import_module("homemodels.models"),"prodcatglist")
         prodcatglist_allobjects=prodcatglist.objects.all() #this stores all the object of prodcatglist class of homemodels.models 3it is a common code in all category
-        mydict={"prodset":prodset,"prodcatglist_allobjects":prodcatglist_allobjects,"stockdict":stockdict} #we will also add the prodcatglist_allobjects in mydict
+        mydict={"prodset":prodset,"prodcatglist_allobjects":prodcatglist_allobjects} #we will also add the prodcatglist_allobjects in mydict
         return render(request,f"allcatgprods/{catgname}/{subcatgname}.html",mydict)
     
-    elif(subcatgname=="best_cryptocurrency_trading_apps_in_india"):
+    elif(subcatgname=="best_cryptocurrency_trading_apps"):
         subcatgname="crypto_trading_apps" #change to give the model name and template name easy
         myclass=getattr(importlib.import_module(f"allcatgprods.models"),f"{subcatgname}")
         filterset=myclass.objects.all() #prodset stores query set containing all objects of my class
         prodcatglist_allobjects=prodcatglist.objects.all() #this stores all the object of prodcatglist class of homemodels.models 3it is a common code in all category
-        cryptonamesdict={"Bitcoin":90,"Etherium":80,"Polygon":33536,"Tether":518}
-        cryptodict={}
-        for crypto,key in cryptonamesdict.items():
-          url=f"https://api.coinlore.net/api/ticker/?id={key}"
-          try:
-            response = requests.get(url)
-            price=(response.json()[0]['price_usd'])
-            change=(response.json()[0]['percent_change_24h'])
-            color="success"
-            if(change[:1]=='-'):
-              color="danger"
-            #   change="-"+change
-            else:
-              change="+"+change
-            temp={"cryptoname":crypto,"price":price,"change":change,"color":color}
-            cryptodict.update({f"{crypto}":temp})
-          except (ConnectionError,TimeoutError,RuntimeError) as e:
-            print(e)
-        mydict={"filterset":filterset,"prodcatglist_allobjects":prodcatglist_allobjects,"cryptodict":cryptodict} #we will also add the prodcatglist_allobjects in mydict
+        mydict={"filterset":filterset,"prodcatglist_allobjects":prodcatglist_allobjects} #we will also add the prodcatglist_allobjects in mydict
         return render(request,f"allcatgprods/{catgname}/{subcatgname}.html",mydict)
 
-    elif(subcatgname=="best_stock_market_courses_for_beginners"):
+    elif(subcatgname=="best_stock_market_courses"):
         subcatgname="stock_market_course" #change to easy model name
         myclass=getattr(importlib.import_module(f"allcatgprods.models"),"online_course") #we can do all the courses with same class (filtering by coursecatg)
         filterset=myclass.objects.filter(coursecatg=f"{subcatgname}") #it store queryset containing all crypto_trading_course
@@ -98,7 +59,7 @@ def fintech(request,catgname,subcatgname):
         mydict={"filterset":filterset,"prodcatglist_allobjects":prodcatglist_allobjects} #we will also add the prodcatglist_allobjects in mydict
         return render(request,f"allcatgprods/{catgname}/{subcatgname}.html",mydict)
 
-    elif(subcatgname=="best_free_crypto_trading_&_nft_courses"):
+    elif(subcatgname=="best_free_crypto_and_nft_courses"):
         subcatgname="crypto_trading_course" #change to easy model name
         myclass=getattr(importlib.import_module(f"allcatgprods.models"),"online_course") #we can do all the courses with same class (filtering by coursecatg)
         filterset=myclass.objects.filter(coursecatg=f"{subcatgname}") #it store queryset containing all crypto_trading_course
@@ -144,7 +105,7 @@ def e_commerce(request,catgname,subcatgname):
 
     elif(subcatgname=="mobile"):
         # return render(request,f"allcatgprods/e_commerce/laptop.html")
-        optval=3 #doing this for making it global
+        optval=1 #doing this for making it global
         if 'options' in request.GET:
             optval=int(request.GET.get('options',2))
         myclass=getattr(importlib.import_module(f"allcatgprods.models"),f"{subcatgname}")
