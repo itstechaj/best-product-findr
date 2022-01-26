@@ -1,3 +1,4 @@
+from tokenize import Special
 from django.db import models
 from django.db.models.fields import CharField
 
@@ -86,35 +87,12 @@ class online_course(commonclass):
 class laptop(commonclass,price):
     #Full specification table feild starts here 
     rank=models.PositiveSmallIntegerField(verbose_name="Rank of product")
-    model=models.CharField(verbose_name="Model No.",max_length=30)
-    weight=models.CharField(verbose_name="Items Weight",max_length=10)
-    color=models.CharField(verbose_name="Colour",max_length=20)
-    os=models.CharField(verbose_name="Operating system",max_length=20)
-    bb=models.CharField(verbose_name="Battery Backup",max_length=20)
-    proc=models.CharField(verbose_name="Processor",max_length=50)
-    clockspeed=models.CharField(verbose_name="Processor Clock speed",max_length=200)
-    gproc=models.CharField(verbose_name="Graphic processor",max_length=50)
-    ram=models.CharField(verbose_name="Ram Capacity",max_length=15)
-    refreshrate=models.CharField(verbose_name="Refresh rate",max_length=15)
-    ssd=models.CharField(verbose_name="SSD Capacity",max_length=20)
-    cache=models.CharField(verbose_name="Cache",max_length=10)
-    graphiccard=models.CharField(verbose_name="Graphic card Memory",max_length=10)
-    noc=models.CharField(verbose_name="Number of cores",max_length=2)
+    os=models.CharField(verbose_name="Operating system",max_length=50)
+    bb=models.CharField(verbose_name="Battery Backup",max_length=100)
+    proc=models.CharField(verbose_name="Processor+Clockspeed",max_length=50)
+    memory=models.CharField(verbose_name="Ram+SSD+cache",max_length=100)  #Give here Ram +SSD+cache
     dispsize=models.CharField(verbose_name="Display Size",max_length=50)
-    dispres=models.CharField(verbose_name="Display Resolution",max_length=50)
-    touchscr=models.CharField(verbose_name="Touch Screen",max_length=5)
-    disptype=models.CharField(verbose_name="Display type",max_length=150)
-    webcam=models.CharField(verbose_name="Web-Cam",max_length=50)
-    mic=models.CharField(verbose_name="In-built Microphone",max_length=50)
-    speakers=models.CharField(verbose_name="Speakers",max_length=80)
-    usbport=models.CharField(verbose_name="USB ports",max_length=150)
-    hdmiport=models.CharField(verbose_name="HDMI ports",max_length=150)
-    backlit=models.CharField(verbose_name="Backlit Keyboard",max_length=25)
-    fingerprint=models.CharField(verbose_name="Fingerprint Scanner",max_length=20)
-    retina=models.CharField(verbose_name="Retina Scanner",max_length=20)
-    warrenty=models.CharField(verbose_name="Warrenty",max_length=50)
-    #Full specification table feild Ends here 
-    #the below feild can change accordingly with product category
+    specialfeatures=models.CharField("Add special features(scans,backlit)",max_length=200)
     spclcatg=models.CharField(verbose_name="Special Category",max_length=50)
     reliancep=models.CharField(verbose_name="Price on Reliance Digital",max_length=40) #this feild can be changed according to category
     reliancelink=models.URLField(verbose_name="Reliance Link")
